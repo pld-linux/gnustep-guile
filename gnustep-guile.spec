@@ -1,22 +1,22 @@
 Summary:	GNUstep Guile interface
 Summary(pl):	Interfejs Guile do GNUstepa
 Name:		gnustep-guile
-Version:	1.1.1
+Version:	1.1.2
 Release:	1
 License:	LGPL/GPL
 Group:		Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
-# Source0-md5:	ba071534c0c37fe09feb583c9b475b5b
+# Source0-md5:	244fa5f2e600d52e0b2328dbdb445d19
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnustep.org/
-BuildRequires:	gnustep-base-devel >= 1.7.0
+BuildRequires:	gnustep-base-devel >= 1.7.3
 #BuildRequires:	gnustep-db-devel >= ? (gdl2? -lgnustep-db2 -lgnustep-db2control)
-BuildRequires:	gnustep-gui-devel
-BuildRequires:	gnustep-make-devel >= 1.7.0
+BuildRequires:	gnustep-gui-devel >= 0.8.8-2
+BuildRequires:	gnustep-make-devel >= 1.7.3
 BuildRequires:	guile-devel >= 1.6
 Requires(post,postun):	/sbin/ldconfig
-Requires:	gnustep-make >= 1.7.0
+Requires:	gnustep-make >= 1.7.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gsdir		/usr/lib/GNUstep
@@ -46,8 +46,8 @@ GNUstepowych.
 Summary:	GNUstep guile headers
 Summary(pl):	Pliki nag³ówkowe GNUstep guile
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
-Requires:	gnustep-base-devel >= 1.7.0
+Requires:	%{name} = %{version}-%{release}
+Requires:	gnustep-base-devel >= 1.7.3
 Requires:	guile-devel >= 1.6
 
 %description devel
@@ -113,17 +113,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_infodir}/greg.info*
 
 # GNUstep world
-%dir %{_gsdir}/System/Applications/*.app
-%{_gsdir}/System/Applications/*.app/Resources
-%dir %{_gsdir}/System/Applications/*.app/%{gscpu}
-%dir %{_gsdir}/System/Applications/*.app/%{gscpu}/%{gsos}
-%dir %{_gsdir}/System/Applications/*.app/%{gscpu}/%{gsos}/%{libcombo}
-%{_gsdir}/System/Applications/*.app/%{gscpu}/%{gsos}/%{libcombo}/*.openapp
-%attr(755,root,root) %{_gsdir}/System/Applications/gui.app/gui
-%attr(755,root,root) %{_gsdir}/System/Applications/gui.app/%{gscpu}/%{gsos}/%{libcombo}/gui
-%attr(755,root,root) %{_gsdir}/System/Applications/guile-gui.app/guile-gui
-%attr(755,root,root) %{_gsdir}/System/Applications/guile-gui.app/%{gscpu}/%{gsos}/%{libcombo}/guile-gui
-
 %docdir %{_prefix}/System/Library/Documentation
 %dir %{_gsdir}/System/Library/Documentation/Developer/Guile
 %{_gsdir}/System/Library/Documentation/Developer/Guile/ReleaseNotes
@@ -145,7 +134,8 @@ rm -rf $RPM_BUILD_ROOT
 %docdir %{_prefix}/System/Library/Documentation
 %{_gsdir}/System/Library/Documentation/Developer/Guile/Manual
 %{_gsdir}/System/Library/Documentation/info/*.info*
-%{_gsdir}/System/Library/Headers/ScriptKit
-%{_gsdir}/System/Library/Headers/gnustep/guile
+%{_gsdir}/System/Library/Headers/%{libcombo}/GNUstepGuile
+%{_gsdir}/System/Library/Headers/%{libcombo}/ScriptKit
+%{_gsdir}/System/Library/Headers/%{libcombo}/gnustep/guile
 %{_gsdir}/System/Library/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so
 %{_gsdir}/System/Library/Makefiles/Additional/guile.make
