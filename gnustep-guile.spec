@@ -6,6 +6,7 @@ Release:	1
 License:	LGPL/GPL
 Group:		Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
+# Source0-md5:	2107a7fdb29225329e6257448ac95371
 Patch0:		%{name}-update.patch
 Patch1:		%{name}-paths.patch
 Patch2:		%{name}-link.patch
