@@ -137,7 +137,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libgreg.so
 %{_libdir}/libgreg.la
 # static?
-#%{_libdir}/libgreg.a
+#%%{_libdir}/libgreg.a
 
 # GNUstep world
 %{_gsdir}/System/Headers/ScriptKit
