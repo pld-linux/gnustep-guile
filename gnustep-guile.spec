@@ -14,6 +14,7 @@ BuildRequires:	gnustep-base-devel >= 1.3.0
 BuildRequires:	gnustep-gui-devel
 BuildRequires:	gnustep-make-devel >= 1.3.0
 BuildRequires:	guile-devel >= 1.4
+Requires(post,postun):	/sbin/ldconfig
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gsdir		/usr/lib/GNUstep
@@ -91,8 +92,13 @@ find $RPM_BUILD_ROOT%{_gsdir}/System/Documentation \
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	-p /sbin/ldconfig
-%postun	-p /sbin/ldconfig
+%post
+/sbin/ldconfig
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
+
+%postun
+/sbin/ldconfig
+[ ! -x /usr/sbin/fix-info-dir ] || /usr/sbin/fix-info-dir %{_infodir} >/dev/null 2>&1
 
 %files
 %defattr(644,root,root,755)
