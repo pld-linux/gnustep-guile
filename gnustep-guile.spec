@@ -1,21 +1,22 @@
 Summary:	GNUstep Guile interface
 Summary(pl):	Interfejs Guile do GNUstepa
 Name:		gnustep-guile
-Version:	1.0.3
+Version:	1.1.1
 Release:	1
 License:	LGPL/GPL
 Group:		Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
-# Source0-md5:	2107a7fdb29225329e6257448ac95371
-Patch0:		%{name}-update.patch
-Patch1:		%{name}-paths.patch
-Patch2:		%{name}-link.patch
+# Source0-md5:	ba071534c0c37fe09feb583c9b475b5b
+Patch0:		%{name}-paths.patch
+Patch1:		%{name}-link.patch
 URL:		http://www.gnustep.org/
-BuildRequires:	gnustep-base-devel >= 1.3.0
+BuildRequires:	gnustep-base-devel >= 1.7.0
+#BuildRequires:	gnustep-db-devel >= ? (gdl2? -lgnustep-db2 -lgnustep-db2control)
 BuildRequires:	gnustep-gui-devel
-BuildRequires:	gnustep-make-devel >= 1.3.0
-BuildRequires:	guile-devel >= 1.4
+BuildRequires:	gnustep-make-devel >= 1.7.0
+BuildRequires:	guile-devel >= 1.6
 Requires(post,postun):	/sbin/ldconfig
+Requires:	gnustep-make >= 1.7.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_gsdir		/usr/lib/GNUstep
@@ -46,8 +47,8 @@ Summary:	GNUstep guile headers
 Summary(pl):	Pliki nag³ówkowe GNUstep guile
 Group:		Development/Libraries
 Requires:	%{name} = %{version}
-Requires:	gnustep-base-devel
-Requires:	guile-devel
+Requires:	gnustep-base-devel >= 1.7.0
+Requires:	guile-devel >= 1.6
 
 %description devel
 Header files for GNUstep Guile interface.
@@ -59,17 +60,16 @@ Pliki nag³ówkowe interfejsu Guile do GNUstepa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 %{__autoconf}
 cd Greg
-cp -f %{_gsdir}/System/Makefiles/config.* .
+cp -f %{_gsdir}/System/Library/Makefiles/config.* .
 %{__autoconf}
 cd ../ScriptKit
 %{__autoconf}
 cd ..
-. %{_gsdir}/System/Makefiles/GNUstep.sh
+. %{_gsdir}/System/Library/Makefiles/GNUstep.sh
 %configure
 
 %{__make} \
@@ -79,7 +79,7 @@ cd ..
 
 %install
 rm -rf $RPM_BUILD_ROOT
-. %{_gsdir}/System/Makefiles/GNUstep.sh
+. %{_gsdir}/System/Library/Makefiles/GNUstep.sh
 %{__make} install \
 	INSTALL_ROOT_DIR=$RPM_BUILD_ROOT \
 	GNUSTEP_INSTALLATION_DIR=$RPM_BUILD_ROOT%{_gsdir}/System
@@ -87,7 +87,7 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} -C Documentation install \
 	GNUSTEP_INSTALLATION_DIR=$RPM_BUILD_ROOT%{_gsdir}/System
 # not (yet?) supported by rpm-compress-doc
-find $RPM_BUILD_ROOT%{_gsdir}/System/Documentation \
+find $RPM_BUILD_ROOT%{_gsdir}/System/Library/Documentation \
 	-type f -a ! -name '*.html' | xargs gzip -9nf
 
 %clean
@@ -124,11 +124,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_gsdir}/System/Applications/guile-gui.app/guile-gui
 %attr(755,root,root) %{_gsdir}/System/Applications/guile-gui.app/%{gscpu}/%{gsos}/%{libcombo}/guile-gui
 
-%docdir %{_prefix}/System/Documentation
-%{_gsdir}/System/Documentation/Developer/Guile
-%{_gsdir}/System/Documentation/info/*.info*
+%docdir %{_prefix}/System/Library/Documentation
+%dir %{_gsdir}/System/Library/Documentation/Developer/Guile
+%{_gsdir}/System/Library/Documentation/Developer/Guile/ReleaseNotes
 
-%attr(755,root,root) %{_gsdir}/System/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so.*
+%{_gsdir}/System/Library/Libraries/Guile
+%attr(755,root,root) %{_gsdir}/System/Library/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so.*
 
 %attr(755,root,root) %{_gsdir}/System/Tools/%{gscpu}/%{gsos}/%{libcombo}/*
 
@@ -141,7 +142,10 @@ rm -rf $RPM_BUILD_ROOT
 #%%{_libdir}/libgreg.a
 
 # GNUstep world
-%{_gsdir}/System/Headers/ScriptKit
-%{_gsdir}/System/Headers/gnustep/guile
-%{_gsdir}/System/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so
-%{_gsdir}/System/Makefiles/Additional/guile.make
+%docdir %{_prefix}/System/Library/Documentation
+%{_gsdir}/System/Library/Documentation/Developer/Guile/Manual
+%{_gsdir}/System/Library/Documentation/info/*.info*
+%{_gsdir}/System/Library/Headers/ScriptKit
+%{_gsdir}/System/Library/Headers/gnustep/guile
+%{_gsdir}/System/Library/Libraries/%{gscpu}/%{gsos}/%{libcombo}/lib*.so
+%{_gsdir}/System/Library/Makefiles/Additional/guile.make

@@ -1,17 +1,20 @@
---- gnustep-guile-1.0.3/Library/Makefile.preamble.orig	Thu Apr  5 06:12:07 2001
-+++ gnustep-guile-1.0.3/Library/Makefile.preamble	Tue Dec 31 14:40:25 2002
-@@ -44,6 +44,11 @@
- libgstep_guile_LIBRARIES_DEPEND_UPON += -lgnustep-base -lobjc $(GUILE_LIBS)
- libgg_base_LIBRARIES_DEPEND_UPON += -lgstep_guile -lgnustep-base -lobjc $(GUILE_LIBS)
- endif
-+ifeq ($(GNUSTEP_TARGET_OS),linux-gnu)
-+libgstep_guile_LIBRARIES_DEPEND_UPON += -lgnustep-base -lobjc $(GUILE_LIBS)
-+libgg_base_LIBRARIES_DEPEND_UPON += -lgstep_guile -lgnustep-base
-+libgg_gui_LIBRARIES_DEPEND_UPON += -lgstep_guile -lgnustep-gui
-+endif
+--- gnustep-guile-1.1.1/Library/Makefile.preamble.orig	2003-03-16 08:31:59.000000000 +0100
++++ gnustep-guile-1.1.1/Library/Makefile.preamble	2003-07-20 01:44:13.000000000 +0200
+@@ -36,11 +36,11 @@
+ # Additional libraries when linking applications
+ ADDITIONAL_GUI_LIBS +=
  
- #
- # Flags dealing with installing and uninstalling
+-libgg_base_LIBRARIES_DEPEND_UPON += -lgnustep-base
++libgg_base_LIBRARIES_DEPEND_UPON += -lgstep_guile -lgnustep-base
+ 
+-libgg_gui_LIBRARIES_DEPEND_UPON += -lgnustep-gui
++libgg_gui_LIBRARIES_DEPEND_UPON += -lgg_base -lgnustep-gui
+ 
+-libgg_gdl2_LIBRARIES_DEPEND_UPON += -lgnustep-db2 -lgnustep-db2control
++libgg_gdl2_LIBRARIES_DEPEND_UPON += -lgstep_guile -lgnustep-db2 -lgnustep-db2control
+ 
+ libgstep_guile_LIBRARIES_DEPEND_UPON += -lgnustep-base -lobjc $(GUILE_LIBS)
+ 
 --- gnustep-guile-1.0.3/ScriptKit/Library/Makefile.preamble.orig	Sun Apr  1 04:54:44 2001
 +++ gnustep-guile-1.0.3/ScriptKit/Library/Makefile.preamble	Tue Dec 31 14:44:04 2002
 @@ -52,3 +52,6 @@

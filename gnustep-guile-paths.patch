@@ -1,14 +1,3 @@
---- gnustep-guile-1.0.3/Greg/configure.in.orig	Fri Apr 20 14:18:06 2001
-+++ gnustep-guile-1.0.3/Greg/configure.in	Tue Dec 31 08:18:31 2002
-@@ -65,7 +65,7 @@
- 
- AC_CHECK_FUNCS(strerror grantpt setpgid setsid tcgetpgrp tcsetpgrp waitpid)
- 
--GUILE_LIB_PATH=`$GUILEPATH -c '(display (string-append (%package-data-dir) "/" (version)))'`
-+GUILE_LIB_PATH=`$GUILEPATH -c '(display (%library-dir))'`
- 
- AC_DEFINE_UNQUOTED(GUILE_LIB_PATH, $GUILE_LIB_PATH)
- 
 --- gnustep-guile-1.0.3/Documentation/GNUmakefile.orig	Tue Feb  5 04:50:41 2002
 +++ gnustep-guile-1.0.3/Documentation/GNUmakefile	Tue Dec 31 14:17:34 2002
 @@ -12,18 +12,23 @@
