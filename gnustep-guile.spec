@@ -1,12 +1,12 @@
 Summary:	GNUstep Guile interface
 Summary(pl):	Interfejs Guile do GNUstepa
 Name:		gnustep-guile
-Version:	1.1.2
+Version:	1.1.4
 Release:	1
 License:	LGPL/GPL
 Group:		Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
-# Source0-md5:	244fa5f2e600d52e0b2328dbdb445d19
+# Source0-md5:	f20d84b0edcbefe2929063f74d170701
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnustep.org/
