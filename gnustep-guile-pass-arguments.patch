@@ -1,0 +1,22 @@
+--- gnustep-guile-1.1.4/Tools/guile-base.m.orig	2001-04-18 17:49:42.000000000 +0200
++++ gnustep-guile-1.1.4/Tools/guile-base.m	2004-07-04 20:48:32.367684674 +0200
+@@ -5,6 +5,10 @@
+ 
+ #include <gstep_guile.h>
+ #include <guile/gh.h>
++#if	defined(LIB_FOUNDATION_LIBRARY) || defined(GS_PASS_ARGUMENTS)
++#include <Foundation/NSProcessInfo.h>
++extern char **environ;
++#endif
+ 
+ static void
+ inner_main(void* colsure, int argc, char **argv)
+@@ -20,7 +24,7 @@
+ #if	defined(LIB_FOUNDATION_LIBRARY) || defined(GS_PASS_ARGUMENTS)
+   [NSProcessInfo initializeWithArguments: argv
+ 				   count: argc
+-			     environment: envp];
++			     environment: environ];
+ #endif
+   scm_boot_guile (argc, argv, inner_main, 0);
+   return 0;
