@@ -2,13 +2,14 @@ Summary:	GNUstep Guile interface
 Summary(pl):	Interfejs Guile do GNUstepa
 Name:		gnustep-guile
 Version:	1.1.4
-Release:	1
+Release:	2
 License:	LGPL/GPL
 Group:		Libraries
 Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
 # Source0-md5:	f20d84b0edcbefe2929063f74d170701
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-link.patch
+Patch2:		%{name}-pass-arguments.patch
 URL:		http://www.gnustep.org/
 BuildRequires:	autoconf
 BuildRequires:	gnustep-base-devel >= 1.7.3
@@ -20,7 +21,7 @@ Requires(post,postun):	/sbin/ldconfig
 Requires:	gnustep-make >= 1.7.3
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_gsdir		/usr/lib/GNUstep
+%define		_gsdir		/usr/%{_lib}/GNUstep
 
 %define		libcombo	gnu-gnu-gnu
 %define		gsos		linux-gnu
@@ -28,7 +29,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		gscpu		ix86
 %else
 # also s/alpha.*/alpha/, but we use only "alpha" arch for now
-%define		gscpu		%{_target_cpu}
+%define		gscpu		%(echo %{_target_cpu} | sed -e 's/amd64/x86_64/;s/ppc/powerpc/')
 %endif
 
 %description
@@ -61,6 +62,7 @@ Pliki nag³ówkowe interfejsu Guile do GNUstepa.
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 %{__autoconf}
