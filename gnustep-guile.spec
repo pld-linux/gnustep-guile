@@ -10,6 +10,7 @@ Source0:	ftp://ftp.gnustep.org/pub/gnustep/libs/%{name}-%{version}.tar.gz
 Patch0:		%{name}-paths.patch
 Patch1:		%{name}-link.patch
 URL:		http://www.gnustep.org/
+BuildRequires:	autoconf
 BuildRequires:	gnustep-base-devel >= 1.7.3
 #BuildRequires:	gnustep-db-devel >= ? (gdl2? -lgnustep-db2 -lgnustep-db2control)
 BuildRequires:	gnustep-gui-devel >= 0.8.8-2
