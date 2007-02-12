@@ -1,5 +1,5 @@
 Summary:	GNUstep Guile interface
-Summary(pl):	Interfejs Guile do GNUstepa
+Summary(pl.UTF-8):   Interfejs Guile do GNUstepa
 Name:		gnustep-guile
 Version:	1.1.4
 Release:	4
@@ -38,15 +38,15 @@ libraries from within Guile. This effectively provides you with
 scripting language for GNUstep and an interactive system for
 developing GNUstep applications.
 
-%description -l pl
-Interfejs Guile do GNUstepa pozwala na uøywanie (i rozszerzanie)
-bibliotek GNUstepa z poziomu Guile. Efektywnie udostÍpnia to jÍzyk
+%description -l pl.UTF-8
+Interfejs Guile do GNUstepa pozwala na u≈ºywanie (i rozszerzanie)
+bibliotek GNUstepa z poziomu Guile. Efektywnie udostƒôpnia to jƒôzyk
 skryptowy dla GNUstepa i interaktywny system do rozwijania aplikacji
 GNUstepowych.
 
 %package devel
 Summary:	GNUstep guile headers
-Summary(pl):	Pliki nag≥Ûwkowe GNUstep guile
+Summary(pl.UTF-8):   Pliki nag≈Ç√≥wkowe GNUstep guile
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gnustep-base-devel >= 1.7.3
@@ -55,8 +55,8 @@ Requires:	guile-devel >= 1.6
 %description devel
 Header files for GNUstep Guile interface.
 
-%description devel -l pl
-Pliki nag≥Ûwkowe interfejsu Guile do GNUstepa.
+%description devel -l pl.UTF-8
+Pliki nag≈Ç√≥wkowe interfejsu Guile do GNUstepa.
 
 %prep
 %setup -q
