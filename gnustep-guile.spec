@@ -1,5 +1,5 @@
 Summary:	GNUstep Guile interface
-Summary(pl.UTF-8):   Interfejs Guile do GNUstepa
+Summary(pl.UTF-8):	Interfejs Guile do GNUstepa
 Name:		gnustep-guile
 Version:	1.1.4
 Release:	4
@@ -46,7 +46,7 @@ GNUstepowych.
 
 %package devel
 Summary:	GNUstep guile headers
-Summary(pl.UTF-8):   Pliki nagłówkowe GNUstep guile
+Summary(pl.UTF-8):	Pliki nagłówkowe GNUstep guile
 Group:		Development/Libraries
 Requires:	%{name} = %{version}-%{release}
 Requires:	gnustep-base-devel >= 1.7.3
